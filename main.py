@@ -1,7 +1,11 @@
-from random import randint
+from random import randint 
+from file_functions import empty_file, new_record, write_to_file
+import os
+
 
 def compute_number():
     return randint(1, 500)
+
 
 
 def play_game(n):
@@ -18,9 +22,18 @@ def play_game(n):
             win = True
         count += 1
     print(f"guess: {count}.")
+    if new_record("record.txt", count):
+        print("New record!")
+    else:
+        print    
+
+        
+  
+
+
+
 
 n = compute_number()
-# print(n)
+print(n)
 play_game(n)
-
 
