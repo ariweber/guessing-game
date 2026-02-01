@@ -18,3 +18,4 @@ def new_record(filename, count):
             return True
         else: 
             return False
+
