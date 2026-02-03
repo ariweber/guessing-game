@@ -19,10 +19,6 @@ def user_login(filename):
 
 def play_game(n, username):
 
-       
-    
-    
-    
     win = False
     count = 0
     filename = "save_game.csv"
@@ -38,7 +34,6 @@ def play_game(n, username):
         raw_input = input("\nGuess a number between 1 and 500: ")
         if raw_input.lower() == "exit":
             status = "In Progress"
-            save_game_csv(filename, username, n, count, guess, status)
             print("Exiting the game. Goodbye!")
             return
         

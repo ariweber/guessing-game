@@ -23,7 +23,7 @@ def save_game_csv(filename, username, n, count, guess, status):
             'status': status
             }
     for row in rows:
-        if row['usernam'] == username and row['status'] == 'In Progress':
+        if row['usernam'] == username:
             row.update(new_data)
             user_found = True
             break
