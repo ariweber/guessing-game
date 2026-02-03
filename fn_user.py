@@ -23,7 +23,24 @@ def user_registration(filename):
     with open(filename, "a") as f:
         f.write(f"{username},{hashed_password}\n")
 
-user_registration("users.csv")
+def user_login(filename):
+    username = input("Enter your username: ")
+    password = input("Enter your password: ")
+
+    with open(filename, "r") as f:
+        for line in f:
+            stored_username, stored_hashed = line.strip().split(",", 1)
+            if stored_username == username:
+                if check_password(password, stored_hashed.encode('utf-8')):
+                    print("Login successful!")
+                    return True
+                else:
+                    print("Incorrect password.")
+                    return False
+    print("Username not found.")
+    return False
+
+
 
 
 
