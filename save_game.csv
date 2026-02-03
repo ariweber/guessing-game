@@ -1,5 +1,2 @@
-timestamp,computer number,guesses,last guess,status
-2026-02-03 12:34:16,340,0,0,In Progress
-2026-02-03 12:34:26,340,1,45,In Progress
-2026-02-03 12:34:43,340,2,34,In Progress
-2026-02-03 12:34:52,340,3,340,Won
+usernam,timestamp,computer number,guesses,last guess,status
+aw770,2026-02-03 18:20:00,163,4,163,Won
