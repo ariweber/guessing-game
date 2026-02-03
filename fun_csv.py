@@ -5,8 +5,9 @@ from datetime import datetime
 fieldnames = ['usernam', 'timestamp', "computer number", "guesses", "last guess", "status"]
 
 def save_game_csv(filename, n, count, guess, status):
-    with open(filename, mode='a', newline='') as csvfile:
+    with open(filename, mode='w', newline='') as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        writer.writeheader()
         
         writer.writerow({
             'usernam': os.getlogin(),
