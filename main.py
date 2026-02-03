@@ -49,3 +49,7 @@ def play_game(n):
     else:
         if new_record("record.txt", count):    
             print("New record!")
+
+n = randint(1, 500)
+print(f"n = {n}")
+play_game(n)            
