@@ -1,3 +1,4 @@
+from fileinput import filename
 import bcrypt
 
 def hash_password(password):
@@ -5,7 +6,7 @@ def hash_password(password):
         password = str(password)    
         salt = bcrypt.gensalt()
         hashed = bcrypt.hashpw(password.encode('utf-8'), salt)
-        return hashed
+        return hashed.decode('utf-8')
     except Exception as e:
         print(f"Error hashing password: {e}")
         return None
@@ -24,23 +25,25 @@ def user_registration(filename):
         f.write(f"{username},{hashed_password}\n")
 
 def user_login(filename):
-    username = input("Enter your username: ")
-    password = input("Enter your password: ")
+    try:
+        username = input("Enter your username: ")
+        password = input("Enter your password: ")
+        return username, password
+    except Exception as e:
+        print(f"Error during login: {e}")
+        return None, None
 
+
+
+def user_authenticated(filename, username, password):
     with open(filename, "r") as f:
         for line in f:
-            stored_username, stored_hashed = line.strip().split(",", 1)
+            stored_username, stored_hashed_password = line.strip().split(",")
             if stored_username == username:
-                if check_password(password, stored_hashed.encode('utf-8')):
-                    print("Login successful!")
+                if check_password(password, stored_hashed_password.encode('utf-8')):
                     return True
                 else:
-                    print("Incorrect password.")
                     return False
-    print("Username not found.")
-    return False
-
-
 
 
 
