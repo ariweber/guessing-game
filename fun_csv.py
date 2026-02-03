@@ -4,13 +4,13 @@ from datetime import datetime
 
 fieldnames = ['usernam', 'timestamp', "computer number", "guesses", "last guess", "status"]
 
-def save_game_csv(filename, n, count, guess, status):
+def save_game_csv(filename, username, n, count, guess, status):
     with open(filename, mode='w', newline='') as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
         
         writer.writerow({
-            'usernam': os.getlogin(),
+            'usernam': username if username else "Unknown",
             'timestamp': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
             'computer number': n,     
             'guesses': count,          
@@ -36,13 +36,14 @@ def should_save_game():
     response = input("Do you want to save and exit? (y/n): ").strip().lower()
     return response in ['yes', 'y']  
 
-def init_game_csv(filename, computer_number):
+def init_game_csv(filename, computer_number, username):
     with open(filename, mode='w', newline='') as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         
         writer.writeheader()
         
         writer.writerow({
+            'usernam': username,
             'timestamp': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
             'computer number': computer_number,
             'guesses': 0,

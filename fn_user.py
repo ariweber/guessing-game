@@ -24,7 +24,7 @@ def user_registration(filename):
     with open(filename, "a") as f:
         f.write(f"{username},{hashed_password}\n")
 
-def user_login(filename):
+def user_input(filename):
     try:
         username = input("Enter your username: ")
         password = input("Enter your password: ")
@@ -38,12 +38,25 @@ def user_login(filename):
 def user_authenticated(filename, username, password):
     with open(filename, "r") as f:
         for line in f:
-            stored_username, stored_hashed_password = line.strip().split(",")
-            if stored_username == username:
-                if check_password(password, stored_hashed_password.encode('utf-8')):
-                    return True
-                else:
-                    return False
+            parts = line.strip().split(",")
+            if len(parts) == 2:
+                stored_username = parts[0].strip()
+                stored_hashed_password = parts[1].strip()
+                if stored_username == username:
+                    if check_password(password, stored_hashed_password.encode('utf-8')):
+                        return True
+                    else:
+                        return False
 
+def craet_user(filename):
+        u = input("Do you want to register? (y/n): ")
+        if u.lower() == 'y':
+            user_registration(filename)
+            print("User registered successfully.")
+            return True
+        else:
+            print("Exiting the program.")
+            return False
 
+                
 
