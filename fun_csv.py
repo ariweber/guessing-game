@@ -2,13 +2,14 @@ import csv
 import os
 from datetime import datetime
 
-fieldnames = ['timestamp', "computer number", "guesses", "last guess", "status"]
+fieldnames = ['usernam', 'timestamp', "computer number", "guesses", "last guess", "status"]
 
 def save_game_csv(filename, n, count, guess, status):
     with open(filename, mode='a', newline='') as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         
         writer.writerow({
+            'usernam': os.getlogin(),
             'timestamp': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
             'computer number': n,     
             'guesses': count,          
